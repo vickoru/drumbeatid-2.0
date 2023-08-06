@@ -7,3 +7,5 @@ raw_data/
 **/__pycache__/
 .env
 audio_samples/
+.envrc
+.python-version

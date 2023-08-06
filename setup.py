@@ -6,8 +6,8 @@ with open('requirements.txt') as f:
 requirements = [x.strip() for x in content if 'git+' not in x]
 
 setup(name='drumbeatid-2.0',
-      version="1.0",
-      description="Project Description",
+      version="2.0",
+      description="Version 2.0 of the project drumbeatID",
       packages=find_packages(),
       install_requires=requirements,
       test_suite='tests',
