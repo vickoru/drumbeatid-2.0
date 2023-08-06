@@ -1,3 +1,16 @@
+# ---------------------------------
+#	RUN
+# ---------------------------------
+DIRWEB=drumbeatid/website
+
+run_app:run_website run_api
+
+run_website:
+	-@streamlit run drumbeatid/website/userinterface.py
+
+run_api:
+	-@uvicorn drumbeatid.api.api:app --reload
+
 # ----------------------------------
 #          INSTALL & TEST
 # ----------------------------------
@@ -5,10 +18,10 @@ install_requirements:
 	@pip install -r requirements.txt
 
 check_code:
-	@flake8 scripts/* drumbeatid-2.0/*.py
+	@flake8 scripts/* drumbeatid/*.py
 
 black:
-	@black scripts/* drumbeatid-2.0/*.py
+	@black scripts/* drumbeatid/*.py
 
 test:
 	@coverage run -m pytest tests/*.py
@@ -22,8 +35,8 @@ clean:
 	@rm -f .coverage
 	@rm -fr */__pycache__ */*.pyc __pycache__
 	@rm -fr build dist
-	@rm -fr drumbeatid-2.0-*.dist-info
-	@rm -fr drumbeatid-2.0.egg-info
+	@rm -fr drumbeatid-*.dist-info
+	@rm -fr drumbeatid.egg-info
 
 install:
 	@pip install . -U
