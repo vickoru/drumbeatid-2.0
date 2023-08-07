@@ -2,14 +2,13 @@ from importlib.util import spec_from_file_location
 from inspect import stack
 import wave
 
-
 import numpy as np
 import librosa
 
 from drumbeatid.ml_logic.functions import spectogram_mfccs, spectogram_stft, spectogram_mel
 from drumbeatid.ml_logic.functions import spectogram_chroma, padding, minmaxscaling, padding_waveforms
 
-def process_audiofile(audiofile):
+def process_audiofile(self, audiofile):
 
     waveform, samplingrate = librosa.load(audiofile, duration=6)
 
