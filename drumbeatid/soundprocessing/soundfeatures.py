@@ -2,12 +2,14 @@ import numpy as np
 import librosa
 import os
 
+from drumbeatid.utils.utilities import padding
+
 
 class Audio:
     '''
     Librosa features coded in a class
     '''
-    def __init__(self, audiofile, sr=22050, duration=6):
+    def __init__(self, audiofile, sr:int=22050, duration:int=6) -> np.array:
         '''
         Initialize class by getting the he waveforms and the sampling rate
         from librosa
@@ -81,12 +83,16 @@ class Audio:
 
         return self.melspec_dB
 
-    def get_all_features(self):
+    def get_all_features(self, padding=True):
         '''
         Calculate all features with the default settings
         '''
-
         self.Xdb = self.calculate_spectrogramstft()
         self.mfccs = self.calculate_mfccs()
         self.chromafeat = self.calculate_chroma()
         self.melspec_dB = self.calculate_melspect()
+
+        if padding == True:
+            self.chromafeat = librosa.util.pad_center(
+                    self.chromafeat, size=self.mfccs.shape[1], axis=1
+                        )

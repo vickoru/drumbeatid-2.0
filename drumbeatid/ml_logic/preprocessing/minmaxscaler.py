@@ -38,10 +38,10 @@ class CustomMinMaxScaler(TransformerMixin, BaseEstimator):
                 scaler_dict = pickle.load(f)
         except:
             scaler_dict = {
-                'spectrogram': (47.971237, -83.33994),
-                'mfccs': (153.1723, -1078.5714),
-                'melspec': (34.96595, -95.333145),
-                'chroma': (1.0, 0.0)
+                'spectrogram': (-83.33994, 47.971237),
+                'mfccs': (-1078.5714, 153.1723),
+                'melspec': (-95.333145, 34.96595),
+                'chroma': (0.0, 1.0)
                 }
         self.scaling_coeff = scaler_dict[self.feature]
         return self
@@ -49,8 +49,8 @@ class CustomMinMaxScaler(TransformerMixin, BaseEstimator):
 
     def transform(self, X):
 
-        max_ = self.scaling_coeff[0]
-        min_ = self.scaling_coeff[1]
+        max_ = self.scaling_coeff[1]
+        min_ = self.scaling_coeff[0]
         norm = np.array((X - min_)/(max_ - min_))
 
         return norm
