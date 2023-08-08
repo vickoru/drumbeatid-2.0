@@ -85,14 +85,22 @@ class Audio:
 
     def get_all_features(self, padding=True):
         '''
-        Calculate all features with the default settings
+        Calculate all features with the default settings, resulting in a
+        dictionary containing the next key, value pairs
+        'spectrogram': self.Xdb
+        'mfccs': self.mfccs
+        'chroma': self.chromafeat
+        'melspect': self.melspec_db
         '''
-        self.Xdb = self.calculate_spectrogramstft()
-        self.mfccs = self.calculate_mfccs()
-        self.chromafeat = self.calculate_chroma()
-        self.melspec_dB = self.calculate_melspect()
+        self.features = {
+            'spectrogram': self.calculate_spectrogramstft(),
+            'mfccs': self.calculate_mfccs(),
+            'chroma': self.calculate_chroma(),
+            'melspect': self.calculate_melspect()
+            }
 
         if padding == True:
-            self.chromafeat = librosa.util.pad_center(
-                    self.chromafeat, size=self.mfccs.shape[1], axis=1
+            self.features['chroma'] = librosa.util.pad_center(
+                    self.features['chroma'],
+                    size=self.features['mfccs'].shape[1], axis=1
                         )
