@@ -13,7 +13,7 @@ class CustomMinMaxScaler(TransformerMixin, BaseEstimator):
     'spectrogram': Fourier transform of the soundwave
     'mfccs': Mel frequency cepstral coefficients
     'chroma': Chroma features
-    'melspect': Mel-scale spectrogram
+    'melspec': Mel-scale spectrogram
 
     .fit() method only returns the hard encoded  Input: Matrix of values
     of a spectrogram

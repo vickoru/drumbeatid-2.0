@@ -2,8 +2,6 @@ import numpy as np
 import librosa
 import os
 
-from drumbeatid.utils.utilities import padding
-
 
 class Audio:
     '''
@@ -71,7 +69,7 @@ class Audio:
         return self.chromafeat
 
 
-    def calculate_melspect(self, nfft=2048, hoplength=512):
+    def calculate_melspec(self, nfft=2048, hoplength=512):
         '''
         Compute a mel-scaled spectrogram
         '''
@@ -90,17 +88,19 @@ class Audio:
         'spectrogram': self.Xdb
         'mfccs': self.mfccs
         'chroma': self.chromafeat
-        'melspect': self.melspec_db
+        'melspec': self.melspec_db
         '''
         self.features = {
             'spectrogram': self.calculate_spectrogramstft(),
             'mfccs': self.calculate_mfccs(),
             'chroma': self.calculate_chroma(),
-            'melspect': self.calculate_melspect()
+            'melspec': self.calculate_melspec()
             }
 
         if padding == True:
             self.features['chroma'] = librosa.util.pad_center(
                     self.features['chroma'],
-                    size=self.features['mfccs'].shape[1], axis=1
+                    size=self.features['mfccs'].shape[0], axis=0
                         )
+
+        return self
