@@ -1,29 +1,24 @@
 from importlib.util import spec_from_file_location
 from inspect import stack
+import wave
 
 import numpy as np
 import librosa
 
-from drumbeatid.soundprocessing.soundfeatures import Audio
-from drumbeatid.utils.utilities import padding
+from drumbeatid.ml_logic.functions import spectogram_mfccs, spectogram_stft, spectogram_mel
+from drumbeatid.ml_logic.functions import spectogram_chroma, padding, minmaxscaling, padding_waveforms
 
-def preprocess(audiofile, samplingrate=22050, duration=6):
-    '''
-    Preprocessing function to prepare spectrograms as input for the model
-    Input:
-        audiofile: audiofile in format .wav is only implemented for the moment
-        samplingrate: samples per second to load the file using librosa
-        duration: maximum duration in seconds to take from the audiofile,
-                    default set to 6 seconds
-    '''
+def process_audiofile(self, audiofile):
 
-    audio = Audio(audiofile=audiofile,  sr=samplingrate, duration=duration)
-    audio.get_all_features()
+    waveform, samplingrate = librosa.load(audiofile, duration=6)
 
-    waveform = audio.waveform
-    sr_ = audio.samplingrate
+    return waveform, samplingrate
 
 
+def process(waveform, samplingrate, max_length=132300):
+
+    if waveform.shape[0] < max_length:
+        waveform = librosa.util.pad_center(waveform, size=max_length, axis=0)
 
     waveforms = np.array([waveform])
     sr = np.array([samplingrate])
