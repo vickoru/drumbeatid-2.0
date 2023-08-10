@@ -5,8 +5,8 @@ import wave
 import numpy as np
 import librosa
 
-from drumbeatid.ml_logic.functions import spectogram_mfccs, spectogram_stft, spectogram_mel
-from drumbeatid.ml_logic.functions import spectogram_chroma, padding, minmaxscaling, padding_waveforms
+from drumbeatid.legacy.functions import spectogram_mfccs, spectogram_stft, spectogram_mel
+from drumbeatid.legacy.functions import spectogram_chroma, padding, minmaxscaling, padding_waveforms
 
 def process_audiofile(self, audiofile):
 
@@ -35,6 +35,7 @@ def process(waveform, samplingrate, max_length=132300):
     mfccs_norm = minmaxscaling(mfccs, var='mfccs', mode='transform')
     melspect_norm = minmaxscaling(melspect, var='melspec', mode='transform')
     chroma_padded_norm = minmaxscaling(chroma_padded, var='chroma', mode='transform')
+    print(spectogram_feat_norm.shape)
 
     # spectogram_feat_norm = minmaxscaling(spectrogram_feat)
     # mfccs_norm = minmaxscaling(mfccs)
@@ -44,6 +45,8 @@ def process(waveform, samplingrate, max_length=132300):
     stacked = librosa.util.stack([mfccs_norm, melspect_norm,
                                   chroma_padded_norm], axis=3)
     spectogram_feat_norm = np.expand_dims(spectogram_feat_norm, axis=-1)
+    print(spectogram_feat_norm.shape)
+    print(stacked.shape)
 
     return spectogram_feat_norm, stacked
 

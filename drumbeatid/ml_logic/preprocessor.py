@@ -34,13 +34,14 @@ def preprocess(audiofile, samplingrate=22050, duration=6):
     for feature_ in spectrogram_list:
         scaler_ = CustomMinMaxScaler(feature=feature_)
         scaler_.fit()
-        dict_spectrogram[feature_] = scaler_.transform(audio.features[feature_])
+        dict_spectrogram[feature_] = np.array([
+            scaler_.transform(audio.features[feature_])])
 
     feat_stacked = librosa.util.stack([
         dict_spectrogram['mfccs'],
         dict_spectrogram['melspec'],
         dict_spectrogram['chroma']
-        ], axis=2)
+        ], axis=3)
 
     feat_spec = np.expand_dims(dict_spectrogram['spectrogram'], axis=-1)
 
