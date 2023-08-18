@@ -14,5 +14,6 @@ MODELS_PATH = os.path.join(ROOT_PATH, 'models')
 AUDIO_TEST = os.environ.get('AUDIO_TEST')
 AUDIO_TEST_FILEPATH = os.path.join(
     ROOT_PATH, '..', 'audio_samples', AUDIO_TEST)
+IMAGES_PATH = os.path.join(ROOT_PATH, 'gui')
 
 # MODEL_MODE_PATH = os.path.join(MODELS_PATH, MODEL_MODE)
