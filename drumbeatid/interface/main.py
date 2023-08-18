@@ -3,7 +3,7 @@ from drumbeatid.ml_logic.registry import load_model
 from drumbeatid.utils.predictor import predict_genres
 from drumbeatid.params import *
 
-def main(audiofile):
+def predict(audiofile):
     '''
     Main function to load the wav  file, load the model,
     preprocess the audio file and predict the genre
@@ -27,5 +27,5 @@ def main(audiofile):
 
     return message
 
-if __name__ == '__main__':
-    print(main(AUDIO_TEST_FILEPATH))
+# if __name__ == '__main__':
+#     print(predict(AUDIO_TEST_FILEPATH))
