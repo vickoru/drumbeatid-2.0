@@ -15,15 +15,6 @@ window.title('drumbeatID 2.0 🥁')
 db_path_var = StringVar()
 
 
-def analyze(audiofile):
-    prediction = predict(audiofile=audiofile)
-
-    lbl_=Label(
-    window, text=prediction,
-    fg='black', font=("Helvetica", 22))
-    lbl_.place(x=60, y=350)
-
-
 def choosefile():
     db_path = filedialog.askopenfilename(initialdir=AUDIO_TEST_FILEPATH,
                                     title="Choose a drumbeat",
@@ -34,6 +25,16 @@ def choosefile():
     db_path_var.set(db_path)
 	# Add song to listbox
     db_box.insert(END, db_path)
+
+def analyze(audiofile):
+    # pass
+    # prediction = predict(audiofile=audiofile)
+
+    lbl_=Label(
+    window, text='prediction',
+    fg='black', font=("Helvetica", 22))
+    lbl_.place(x=60, y=350)
+
 
 
 # Button to choose your file
@@ -67,9 +68,9 @@ db_box.place(x=100, y=250)
 img = Image.open(
     os.path.join(IMAGES_PATH, 'power.png')).resize((50,50))
 analyze_button_img = ImageTk.PhotoImage(img)
-btn = Button(window, image=analyze_button_img,
-             borderwidth=0, command=analyze(AUDIO_TEST_FILEPATH))
-btn.place(x=285, y=400)
+# btn = Button(window, image=analyze_button_img,
+#              borderwidth=0, command=analyze(AUDIO_TEST_FILEPATH))
+# btn.place(x=285, y=400)
 lbl_analyze=Label(
     window, text="Analyze",
     fg='black', font=("Helvetica", 18))

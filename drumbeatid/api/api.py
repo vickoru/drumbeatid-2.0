@@ -16,8 +16,9 @@ import os
 # print(os.getcwd())
 
 from drumbeatid.ml_logic.registry import load_model
-from drumbeatid.ml_logic.preprocessor import process, process_audiofile
-from drumbeatid.ml_logic.dictionary import predict_genres
+from drumbeatid.ml_logic.preprocessor import preprocess
+from drumbeatid.utils.predictor import predict_genres
+from drumbeatid.params import *
 
 
 #from main_functions import bla bla bl
@@ -26,7 +27,7 @@ from drumbeatid.ml_logic.dictionary import predict_genres
 
 app = FastAPI()
 
-app.state.model = load_model(model_mode='reducedgenre')
+app.state.model = load_model(model_mode=MODEL_MODE)
 
 
 @app.get("/")
@@ -37,17 +38,13 @@ def index():
 async def receive_wav(wav: bytes=File(...)):
     ### Receiving the wav file
 
-    dict_genres = {10: 'Rock'}
+    # x, sr = process_audiofile(io.BytesIO(wav))
 
-    x, sr = process_audiofile(io.BytesIO(wav))
-
-    X1, X2 = process(x, sr)
-    print(X1.shape, X2.shape)
+    X1, X2 = preprocess(io.BytesIO(wav))
 
     y_pred = app.state.model.predict([X1, X2])
-    print(y_pred)
-    # pred = np.argmax(y_pred)
-    # print(pred)
+    # print(y_pred)
+
     prediction = predict_genres(y_pred[0])
     print(prediction)
 
