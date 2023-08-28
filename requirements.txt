@@ -40,3 +40,8 @@ memoized-property
 termcolor
 python-dotenv
 ipython
+python-multipart
+
+# gui
+tk
+pillow
