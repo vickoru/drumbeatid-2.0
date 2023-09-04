@@ -9,8 +9,10 @@ MODEL_MODE = os.environ.get('MODEL_MODE')
 
 FEATURE_LIST = ['spectrogram', 'mfccs', 'chroma', 'melspec']
 
-ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
+ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+print(ROOT_PATH)
 MODELS_PATH = os.path.join(ROOT_PATH, 'models')
+print(MODELS_PATH)
 AUDIO_TEST = os.environ.get('AUDIO_TEST')
 AUDIO_TEST_FILEPATH = os.path.join(
     ROOT_PATH, '..', 'audio_samples', AUDIO_TEST)
