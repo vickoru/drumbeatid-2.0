@@ -18,12 +18,17 @@ class Audio:
         waveform_, samplingrate_ = librosa.load(
             audiofile, sr=sr, duration=duration)
 
+        self.samplingrate = samplingrate_
+        self.maxlength = max_length
+        self.__file__ = audiofile
+        self.__padded__ = False
+
         if waveform_.shape[0] < max_length:
             waveform_ = librosa.util.pad_center(
                 waveform_, size=max_length, axis=0)
+            self.__padded__ = True
 
         self.waveform = waveform_
-        self.samplingrate = samplingrate_
 
 
     def calculate_spectrogramstft(self, nfft=2048, hoplength=512):
