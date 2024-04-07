@@ -1,13 +1,17 @@
+
 from drumbeatid.ml_logic.preprocessor import preprocess
-# from drumbeatid.ml_logic.registry import load_model
 from drumbeatid.utils.predictor import predict_genres
 from drumbeatid.params import *
+
+from colorama import Fore, Style
+
 
 def predict(audiofile):
     '''
     Main function to load the wav  file, load the model,
     preprocess the audio file and predict the genre
     '''
+
     from drumbeatid.ml_logic.registry import load_model
 
     X1, X2 = preprocess(audiofile=audiofile)
@@ -20,13 +24,16 @@ def predict(audiofile):
     prediction = predict_genres(y_pred[0])
 
     if len(prediction) > 1:
-        message = f'\nNot so sure about the style of your drumbeat 🤖\n It could be {", ".join(prediction[:-1]).capitalize()} or {prediction[-1].capitalize()}'
+        message = (f'\nNot so sure about the style of your drumbeat 🤖\n'
+                   'It could be {", ".join(prediction[:-1]).capitalize()} '
+                   'or {prediction[-1].capitalize()}')
         return message
 
     message = f"The style of your drumbeat is:\
         {prediction[0].capitalize()}"
 
     return message
+
 
 if __name__ == '__main__':
     print(predict(AUDIO_TEST_FILEPATH))

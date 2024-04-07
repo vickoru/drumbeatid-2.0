@@ -2,6 +2,7 @@ from importlib.util import spec_from_file_location
 from inspect import stack
 
 import numpy as np
+import pandas as pd
 import librosa
 
 from drumbeatid.params import *
