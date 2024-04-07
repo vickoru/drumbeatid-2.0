@@ -1,16 +1,18 @@
 # packaging
-pip>=9
-setuptools>=26
-twine
-wheel>=0.29
+setuptools-scm==7.1.0
+# pip>=9
+# setuptools>=26
+# twine
+# wheel>=0.29
 
 # data science
-numpy
-pandas
+numpy==1.23.5
+pandas==1.4.4
 #scikit-learn
 
 # Sound processing
-librosa
+librosa==0.10.1
+pydub==0.25.1
 
 # Trick to install the version of Tensorflow depending on your processor: darwin == Mac, ARM == M1
 tensorflow-macos==2.10.0; sys_platform == 'darwin' and 'ARM' in platform_version # Mac M-chips
@@ -19,29 +21,32 @@ tensorflow==2.10.0; sys_platform != 'darwin' # Windows & Ubuntu Intel chips
 
 
 # tests/linter
-black
-coverage
-flake8
-pytest
-yapf
+# black
+# coverage
+# flake8
+# pytest
+# yapf
 
 # API
 # gcsfs
 # google-cloud-storage
 # mlflow
 # s3fs
-fastapi
-uvicorn
+uvicorn==0.19.0
+fastapi==0.85.1
 
 # utilities
-six>=1.14
-joblib
-memoized-property
-termcolor
-python-dotenv
-ipython
-python-multipart
+# six>=1.14
+# six==1.16.0
+# joblib
+# memoized-property
+# termcolor
+# python-dotenv
+ipdb==0.13.9
+ipython==8.5.0
+python-multipart==0.0.6
+colorama==0.4.6
 
 # gui
-tk
-pillow
+# tk
+# pillow
