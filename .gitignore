@@ -3,8 +3,8 @@
 .ipynb_checkpoints
 .DS_Store
 raw_data/
-data/
-data_tmp/
+data/raw
+data/processed
 *.csv
 **/__pycache__/
 .env
