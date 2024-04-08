@@ -11,7 +11,9 @@ from colorama import Fore, Style
 from drumbeatid.params import *
 
 
-def create_samples_folder(styles:list, remove_previous:bool=False) -> str:
+def create_samples_folder(styles:list,
+                          remove_previous:bool=False,
+                          gdrive='/content/drive') -> str:
     '''
     Create folder structure to create the samples using pydub AudioSegment.
     If overwrite=True (default=False), the folder is removed and created again.
@@ -63,7 +65,7 @@ def create_samples_from_segment(drum_entry:pd.Series,
     '''
     '''
 
-    soundfile_path = PATH_RAW_DATA.joinpath(drum_entry.audio_filename)
+    soundfile_path = RAW_DATA_PATH.joinpath(drum_entry.audio_filename)
     soundsegment = AudioSegment.from_file(soundfile_path)
     sample_size = SAMPLE_INTERVAL * 1000 # sample size in milliseconds
 
