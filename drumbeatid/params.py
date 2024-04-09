@@ -27,7 +27,7 @@ def define_env(gdrive='/content/drive'):
             data_path = ROOT_PATH.parent / 'data'
 
         elif envmode == 'colab':
-            data_path =  Path(gdrive) / 'MyDrive' / 'drumbeatid'
+            data_path =  Path(gdrive) / 'MyDrive' / 'drumbeatid' / 'data'
 
         else:
             raise Exception('No valid environment option '
