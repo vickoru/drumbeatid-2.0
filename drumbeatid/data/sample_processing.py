@@ -116,20 +116,21 @@ def create_samples_from_segment(drum_entry:pd.Series,
 
     keys = list(drum_entry.index) # 'time_signature', 'bpm', 'style', 'audio_filename'
     keys.append('duration_in_seconds') # adding duration in seconds of the sample
-    values = [[] for i in range(0, len(keys))]
+    # values = [[] for i in range(0, len(keys))]
+    dict_info = {key: [] for key in keys}
 
     for i, chunk in enumerate(soundsegment[::sample_size]):
         drum_entry_sample = f'{soundfile_path.stem}_sample-{i+1}.wav'
         drum_entry_sample_path = SAMPLES_FOLDER_PATH / drum_entry.style / drum_entry_sample
         with drum_entry_sample_path.open('wb') as f:
             chunk.export(f, format='wav')
-        values[0].append(drum_entry.time_signature)
-        values[1].append(drum_entry.bpm)
-        values[2].append(drum_entry.style)
-        values[3].append(drum_entry_sample)
-        values[4].append(chunk.duration_seconds)
+        for key in keys:
+            if key == 'duration_in_seconds':
+                dict_info[key].append(chunk.duration_seconds)
+            else:
+                dict_info[key].append(drum_entry[key])
 
-    df = pd.DataFrame(dict(zip(keys, values)))
+    df = pd.DataFrame(dict_info)
 
     return df
 
