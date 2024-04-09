@@ -22,6 +22,7 @@ def create_audio_samples_from_df(audio_df:pd.DataFrame,
     print(Fore.GREEN + Style.BRIGHT + '\nCreating samples...\n' + Style.RESET_ALL)
 
     for index, row in tqdm(audio_df.iterrows(), total=audio_df.shape[0]):
+        print(Fore.BLUE + Style.BRIGHT + f'Sampling audiofile # {index+1}... ' + Style.RESET_ALL)
         samples_df_ = create_samples_from_segment(row, SAMPLE_INTERVAL=SAMPLE_INTERVAL)
         samples_df = pd.concat([samples_df, samples_df_])
 
