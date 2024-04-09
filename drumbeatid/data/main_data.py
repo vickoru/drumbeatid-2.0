@@ -2,6 +2,7 @@ import pandas as pd
 from pathlib import Path
 
 from colorama import Fore, Style
+from tqdm import tqdm
 
 from drumbeatid.data.sample_processing import create_samples_folder, create_samples_from_segment
 from drumbeatid.params import *
@@ -20,7 +21,7 @@ def create_audio_samples_from_df(audio_df:pd.DataFrame,
 
     print(Fore.GREEN + Style.BRIGHT + '\nCreating samples...\n' + Style.RESET_ALL)
 
-    for index, row in audio_df.iterrows():
+    for index, row in tqdm(audio_df.iterrows(), total=audio_df.shape[0]):
         samples_df_ = create_samples_from_segment(row, SAMPLE_INTERVAL=SAMPLE_INTERVAL)
         samples_df = pd.concat([samples_df, samples_df_])
 
@@ -69,4 +70,4 @@ def main(remove_previous=False):
 
 
 if __name__ == '__main__':
-    main(remove_previous=False)
+    main(remove_previous=True)
