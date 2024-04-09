@@ -46,6 +46,7 @@ pydub==0.25.1
 # ipython==8.5.0
 python-multipart==0.0.6
 colorama==0.4.6
+tqdm==4.66.2
 
 # gui
 # tk
