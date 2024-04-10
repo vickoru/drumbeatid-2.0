@@ -127,6 +127,9 @@ def create_samples_from_segment(drum_entry:pd.Series,
         for key in keys:
             if key == 'duration_in_seconds':
                 dict_info[key].append(chunk.duration_seconds)
+            elif key == 'audio_filename':
+                dict_info[key].append(
+                Path(SAMPLES_FOLDER_PATH.stem) / drum_entry.style / drum_entry_sample)
             else:
                 dict_info[key].append(drum_entry[key])
 
