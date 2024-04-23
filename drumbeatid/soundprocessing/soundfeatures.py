@@ -7,14 +7,14 @@ class Audio:
     '''
     Librosa features coded in a class
     '''
-    def __init__(self, audiofile, sr:int=22050, duration:int=6) -> np.array:
+    def __init__(self, audiofile, sr:int=22050, duration:float=6.0) -> np.array:
         '''
         Initialize class by getting the he waveforms and the sampling rate
         from librosa
         Default duration of the sample is 6 seconds, with a sampling rate of
         22050 samples per secong, default in librosa.
         '''
-        max_length = duration * sr
+        max_length = int(duration * sr)
         waveform_, samplingrate_ = librosa.load(
             audiofile, sr=sr, duration=duration)
 

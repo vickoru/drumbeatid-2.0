@@ -42,7 +42,7 @@ FEATURE_LIST = ['spectrogram', 'mfccs', 'chroma', 'melspec']
 # does not resolve symlinks.
 ROOT_PATH = Path(__file__).resolve().parent
 ENV_MODE, DATA_PATH  = define_env()
-RAW_DATA_PATH = DATA_PATH / 'raw' / 'groove'
+RAW_DATA_PATH = DATA_PATH / 'raw'
 MODELS_PATH = ROOT_PATH / 'models'
 IMAGES_PATH = ROOT_PATH / 'gui'
 
@@ -52,6 +52,7 @@ SAMPLE_INTERVAL = int(os.environ.get('SAMPLE_INTERVAL')) # Interval of the sampl
 SAMPLES_FOLDER_PATH = DATA_PATH.joinpath('processed',
                                         f'samples_{SAMPLE_INTERVAL}s')
 MODEL_MODE = os.environ.get('MODEL_MODE')
+
 
 ## TESTS ##
 AUDIO_TEST = os.environ.get('AUDIO_TEST')
