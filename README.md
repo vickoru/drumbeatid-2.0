@@ -1,73 +1,13 @@
-# Data analysis
-- Document here the project: drumbeatid-2.0
-- Description: Project Description
-- Data Source:
-- Type of analysis:
+# drumbeatID
 
-Please document the project the better you can.
+drumbeatID is a project I started developing when I was completing a data science bootcamp a couple of years back. Its main purpose is to develop a deep learning algorithm that classifies drumming styles from a WAV audiofile. 
 
-# Startup the project
+## Project status and roadmap 
 
-The initial setup.
+The project is still in progress. 
 
-Create virtualenv and install the project:
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv ~/venv ; source ~/venv/bin/activate ;\
-    pip install pip -U; pip install -r requirements.txt
-```
-
-Unittest test:
-```bash
-make clean install test
-```
-
-Check for drumbeatid-2.0 in github.com/{group}. If your project is not set please add it:
-
-Create a new project on github.com/{group}/drumbeatid-2.0
-Then populate it:
-
-```bash
-##   e.g. if group is "{group}" and project_name is "drumbeatid-2.0"
-git remote add origin git@github.com:{group}/drumbeatid-2.0.git
-git push -u origin master
-git push -u origin --tags
-```
-
-Functionnal test with a script:
-
-```bash
-cd
-mkdir tmp
-cd tmp
-drumbeatid-2.0-run
-```
-
-# Install
-
-Go to `https://github.com/{group}/drumbeatid-2.0` to see the project, manage issues,
-setup you ssh public key, ...
-
-Create a python3 virtualenv and activate it:
-
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv -ppython3 ~/venv ; source ~/venv/bin/activate
-```
-
-Clone the project and install it:
-
-```bash
-git clone git@github.com:{group}/drumbeatid-2.0.git
-cd drumbeatid-2.0
-pip install -r requirements.txt
-make clean install test                # install and test
-```
-Functionnal test with a script:
-
-```bash
-cd
-mkdir tmp
-cd tmp
-drumbeatid-2.0-run
-```
+The goals of this project are: 
+- Develop the scripts necessary to preprocess WAV files to extract segments of custom duration in seconds as input samples for the deep learning algorithm.
+- Develop the scripts to extract audio sample features, with particular emphasis on spectrograms as input for training the algorithm.
+- Train a convolutional neural network to classify drumming styles based on spectrograms as input.
+- Generation of short duration drum beats of a particular drumming style via training of a variational autoencoder or diffusion models. 
